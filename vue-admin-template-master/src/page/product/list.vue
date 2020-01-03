@@ -1,4 +1,3 @@
-
 <template>
     <div>
        <el-button type="primary" size="small" @click="toAddHandler">添加</el-button>
@@ -6,16 +5,17 @@
        
        <el-table :data="employees">
            <el-table-column fixed="left" prop="id" label="编号"></el-table-column>
-            <el-table-column fixed="left" prop="username" label="用户名"></el-table-column>
-           <el-table-column prop="realname" label="姓名"></el-table-column>
-           <el-table-column prop="gender" label="性别"></el-table-column>
-           <el-table-column width=120px prop="telephone" label="手机号"></el-table-column>
-           <el-table-column width=240px prop="idCard" label="身份证号"></el-table-column>
-           <el-table-column width=240px prop="bankCard" label="银行卡号"></el-table-column>
+            <el-table-column fixed="left" prop="name" label="产品名称"></el-table-column>
+           <el-table-column prop="realname" label=""></el-table-column>
+           <el-table-column prop="price" label="价格"></el-table-column>
+           <el-table-column prop="status" label="状态"></el-table-column>       
+           <el-table-column width=120px prop="categoryId" label="所属产品"></el-table-column>
            <el-table-column fixed="right" label="操作">
                 <template v-slot="slot">
                   <a href="" @click.prevent="toDeleteHandler(slot.row.id)">删除</a>
                   <a href="" @click.prevent="toUpdateHandler(slot.row)">修改</a>
+                  <a href="" @click.prevent="toUpdateHandler(slot.row)">详情</a>
+
               </template>
            </el-table-column>
        </el-table>  
@@ -70,7 +70,7 @@ import querystring from 'querystring'
 export default {
     methods:{
         submitHandler(){
-            let url = "http://localhost:6677//waiter/saveOrUpdate"
+            let url = "http://localhost:6677//product/saveOrUpdate"
             request({
                 url,
                 method:"POST",
@@ -81,7 +81,7 @@ export default {
             })
         },
         loadData(){
-            let url = "http://localhost:6677/waiter/findAll";
+            let url = "http://localhost:6677/product/findAll";
             request.get(url).then((response)=>{
                 this.employees = response.data;
             }).then((response)=>{
@@ -130,7 +130,7 @@ export default {
             }
         }  
     },
-    created(){
+  created(){
         //在页面加载出来的时候加载数据
         this.loadData();
     }

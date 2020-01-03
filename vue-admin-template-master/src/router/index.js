@@ -103,22 +103,22 @@ export const constantRoutes = [
   },
 
   {
-        path: '/menu',
+        path: '/page',
         //component: () => import('@/page/nested/index.vue'), // Parent router-view
         component: Layout,
         name: 'Form',
         meta: { title: '系统配置', icon: 'user' },
         children: [
           {
-            path: '/nested/menu1',
-            component: () => import('@/page/nested/menu1/list.vue'),
-            name: '配置1',
+            path: '/page/category',
+            component: () => import('@/page/category/list.vue'),
+            name: '栏目管理',
             meta: { title: '栏目管理' }
           },
           {
-            path: '/nested/menu2',
-            component: () => import('@/page/nested/menu2/list.vue'),
-            name: '配置2',
+            path: '/page/product',
+            component: () => import('@/page/product/list.vue'),
+            name: '产品管理',
             meta: { title: '产品管理' }
           },
         ]
